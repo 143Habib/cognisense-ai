@@ -1,0 +1,8 @@
+COGNISENSE AI — FINAL UI NOTES
+
+- Bespoke CogniSense monogram SVG and matching favicon.
+- Overview hero uses a translucent 3D human brain illustration with glowing neural pathways.
+- The brain image remains stationary; only the surrounding orbital paths animate.
+- Forest/graphite visual language and responsive typography are retained.
+- Desktop, tablet, and mobile layouts are supported.
+- Research navigation includes dataset, processing, and evaluation context.

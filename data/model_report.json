@@ -1,0 +1,62 @@
+{
+  "dataset": "MAUS",
+  "participants": 22,
+  "trials": 132,
+  "trials_per_condition": {
+    "0-back": 44,
+    "2-back": 44,
+    "3-back": 44
+  },
+  "primary_target": "Low (0-back) vs Elevated (2-back + 3-back)",
+  "input_modality": "Fingertip PPG (256 Hz)",
+  "trial_duration_seconds": 300,
+  "windowing": {
+    "windows_per_trial": 6,
+    "window_seconds": 50
+  },
+  "features_per_window": 21,
+  "trial_features": 84,
+  "model": "RandomForestClassifier",
+  "model_parameters": {
+    "n_estimators": 250,
+    "min_samples_leaf": 2,
+    "max_features": 0.5,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "validation": "Leave-One-Subject-Out (22 outer folds); threshold selected using grouped inner validation on training subjects only",
+  "threshold_median": 0.595,
+  "threshold_mean": 0.6027272727272727,
+  "metrics": {
+    "accuracy": 0.696969696969697,
+    "balanced_accuracy": 0.6761363636363636,
+    "macro_f1": 0.6695869837296621,
+    "roc_auc": 0.7179752066115703,
+    "confusion_matrix": [
+      [
+        27,
+        17
+      ],
+      [
+        23,
+        65
+      ]
+    ],
+    "low_recall": 0.6136363636363636,
+    "elevated_recall": 0.7386363636363636
+  },
+  "nasa_tlx_adjusted_rate_by_task": {
+    "0-back_mean": 8.29545454534091,
+    "2-back_mean": 33.560606061386366,
+    "3-back_mean": 55.924242424090906,
+    "friedman_statistic": 42.09090909090912,
+    "friedman_p_value": 7.245614465183123e-10
+  },
+  "limitations": [
+    "This is a research prototype, not a medical or clinical device.",
+    "N-back task conditions are workload-demand proxies, not direct measurements of a person\u2019s internal mental state.",
+    "The MAUS cohort contains 22 participants and one acquisition protocol; external validation is required.",
+    "The subject-independent model shows moderate discrimination and should not be interpreted as a definitive workload meter.",
+    "New uploads should match the training protocol: fingertip PPG, 256 Hz, and a 5-minute trial."
+  ]
+}

@@ -1,0 +1,565 @@
+{
+  "dataset": {
+    "name": "MAUS \u2014 A Dataset for Mental Workload Assessment on N-back Task Using Wearable Sensor",
+    "doi": "10.21227/q4td-yd35",
+    "participants": 22,
+    "trials": 132,
+    "trial_conditions": {
+      "0-back": 44,
+      "2-back": 44,
+      "3-back": 44
+    },
+    "trial_duration_seconds": 300,
+    "modalities": {
+      "ecg": {
+        "label": "ECG",
+        "full": "Single-lead electrocardiogram",
+        "fs": 256,
+        "source": "ProComp Infiniti"
+      },
+      "fppg": {
+        "label": "Fingertip PPG",
+        "full": "Palmar fingertip photoplethysmography",
+        "fs": 256,
+        "source": "ProComp Infiniti"
+      },
+      "wppg": {
+        "label": "Wrist PPG",
+        "full": "Wrist-worn PixArt photoplethysmography",
+        "fs": 100,
+        "source": "PixArt PPG watch"
+      },
+      "gsr": {
+        "label": "GSR / EDA",
+        "full": "Galvanic skin response / electrodermal activity",
+        "fs": 256,
+        "source": "ProComp Infiniti"
+      }
+    },
+    "sampling_rates_hz": {
+      "ecg": 256,
+      "fppg": 256,
+      "gsr": 256,
+      "wppg": 100
+    },
+    "derived_streams": [
+      "RRI_inf: ECG-derived inter-beat intervals",
+      "PPI_inf: fingertip-PPG-derived pulse intervals",
+      "PPI_pix: wrist-PPG-derived pulse intervals"
+    ],
+    "subjective_context": [
+      "NASA-TLX adjusted workload per trial",
+      "PSQI participant-level sleep-quality score"
+    ],
+    "behavioural_context": "N-back response-log fields and positive reaction-time records from record.xlsx"
+  },
+  "model_reference": {
+    "fingertip_ppg_baseline": {
+      "model": "RandomForestClassifier",
+      "validation": "22-fold Leave-One-Subject-Out with grouped inner-threshold selection",
+      "accuracy": 0.696969696969697,
+      "balanced_accuracy": 0.6761363636363636,
+      "macro_f1": 0.6695869837296621,
+      "roc_auc": 0.7179752066115703,
+      "confusion_matrix": [
+        [
+          27,
+          17
+        ],
+        [
+          23,
+          65
+        ]
+      ],
+      "threshold_median": 0.595,
+      "feature_count": 84
+    },
+    "multimodal_fusion_note": "The four-sensor feature-fusion pilot is included as an exploratory comparison. It did not outperform the prior fingertip-PPG reference in subject-independent discrimination; the software therefore presents sensor-level evidence and fusion transparently rather than claiming that fusion is superior."
+  },
+  "statistical_evidence": [
+    {
+      "measure": "NASA-TLX adjusted workload",
+      "feature": "nasa_tlx_adjusted",
+      "n_subjects": 22,
+      "mean_0back": 8.29545454534091,
+      "mean_2back": 33.560606061386366,
+      "mean_3back": 55.924242424090906,
+      "friedman_chi2": 42.09090909090912,
+      "friedman_p": 7.245614465183123e-10,
+      "kendall_w": 0.9566115702479346,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": 24.91666666925,
+          "p_value": 4.76837158203125e-07,
+          "rank_biserial": 1.0
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": 48.916666667499996,
+          "p_value": 4.76837158203125e-07,
+          "rank_biserial": 1.0
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 21.416666662500003,
+          "p_value": 9.5367431640625e-07,
+          "rank_biserial": 0.9090909090909091
+        }
+      ],
+      "friedman_p_fdr_bh": 9.41929880473806e-09
+    },
+    {
+      "measure": "ECG heart rate",
+      "feature": "ecg_hr_mean_bpm_mean",
+      "n_subjects": 22,
+      "mean_0back": 78.11834465166139,
+      "mean_2back": 80.35470936134183,
+      "mean_3back": 80.62677730867422,
+      "friedman_chi2": 9.909090909090935,
+      "friedman_p": 0.0070512846807038185,
+      "kendall_w": 0.22520661157024852,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": 1.689567141514189,
+          "p_value": 0.005275726318359375,
+          "rank_biserial": 0.5454545454545454
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": 2.795224792056217,
+          "p_value": 0.0019183158874511719,
+          "rank_biserial": 0.5454545454545454
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 0.3717916724563004,
+          "p_value": 0.5028400421142578,
+          "rank_biserial": 0.09090909090909091
+        }
+      ],
+      "friedman_p_fdr_bh": 0.01309524297844995
+    },
+    {
+      "measure": "ECG SDNN",
+      "feature": "ecg_hrv_sd_ms_mean",
+      "n_subjects": 22,
+      "mean_0back": 58.82322250106134,
+      "mean_2back": 51.23040421198667,
+      "mean_3back": 50.40216091299299,
+      "friedman_chi2": 13.727272727272748,
+      "friedman_p": 0.001045106626715259,
+      "kendall_w": 0.3119834710743806,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": -6.6057534711184545,
+          "p_value": 0.004684925079345703,
+          "rank_biserial": -0.7272727272727273
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": -5.243644303612339,
+          "p_value": 0.018956661224365234,
+          "rank_biserial": -0.5454545454545454
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 1.2089970693786931,
+          "p_value": 0.774528980255127,
+          "rank_biserial": 0.09090909090909091
+        }
+      ],
+      "friedman_p_fdr_bh": 0.003259091717163463
+    },
+    {
+      "measure": "ECG RMSSD",
+      "feature": "ecg_hrv_rmssd_ms_mean",
+      "n_subjects": 22,
+      "mean_0back": 52.928012916559915,
+      "mean_2back": 46.580229934187315,
+      "mean_3back": 46.10049132120512,
+      "friedman_chi2": 8.454545454545439,
+      "friedman_p": 0.014592133055970263,
+      "kendall_w": 0.19214876033057815,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": -2.700853567411439,
+          "p_value": 0.018956661224365234,
+          "rank_biserial": -0.5454545454545454
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": -2.9152984647771962,
+          "p_value": 0.03907346725463867,
+          "rank_biserial": -0.45454545454545453
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 1.4071046513548886,
+          "p_value": 0.6788630485534668,
+          "rank_biserial": 0.09090909090909091
+        }
+      ],
+      "friedman_p_fdr_bh": 0.023712216215951678
+    },
+    {
+      "measure": "Fingertip PPG heart rate",
+      "feature": "fppg_hr_mean_bpm_mean",
+      "n_subjects": 22,
+      "mean_0back": 77.00376696009843,
+      "mean_2back": 80.08133362906868,
+      "mean_3back": 80.30612426283564,
+      "friedman_chi2": 13.363636363636374,
+      "friedman_p": 0.0012534968142936397,
+      "kendall_w": 0.303719008264463,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": 1.853270273865924,
+          "p_value": 0.00017690658569335938,
+          "rank_biserial": 0.6363636363636364
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": 3.200681269516906,
+          "p_value": 0.00017690658569335938,
+          "rank_biserial": 0.6363636363636364
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 0.11227520869634589,
+          "p_value": 0.6556386947631836,
+          "rank_biserial": 0.0
+        }
+      ],
+      "friedman_p_fdr_bh": 0.003259091717163463
+    },
+    {
+      "measure": "Fingertip PPG SDNN",
+      "feature": "fppg_hrv_sd_ms_mean",
+      "n_subjects": 22,
+      "mean_0back": 51.44377133334768,
+      "mean_2back": 46.742080003012184,
+      "mean_3back": 45.892028919790256,
+      "friedman_chi2": 6.636363636363626,
+      "friedman_p": 0.03621862396839698,
+      "kendall_w": 0.1508264462809915,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": -6.20799737936537,
+          "p_value": 0.046160221099853516,
+          "rank_biserial": -0.36363636363636365
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": -7.371283910426829,
+          "p_value": 0.014094829559326172,
+          "rank_biserial": -0.45454545454545453
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": -1.532341460608425,
+          "p_value": 0.2615199089050293,
+          "rank_biserial": -0.2727272727272727
+        }
+      ],
+      "friedman_p_fdr_bh": 0.04280382832628734
+    },
+    {
+      "measure": "Fingertip PPG RMSSD",
+      "feature": "fppg_hrv_rmssd_ms_mean",
+      "n_subjects": 22,
+      "mean_0back": 44.39663061638475,
+      "mean_2back": 41.503501705076005,
+      "mean_3back": 42.18683150184962,
+      "friedman_chi2": 4.454545454545439,
+      "friedman_p": 0.10782208975362459,
+      "kendall_w": 0.10123966942148725,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": -2.4375362847399593,
+          "p_value": 0.19821882247924805,
+          "rank_biserial": -0.18181818181818182
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": -2.9841286423872404,
+          "p_value": 0.16585874557495117,
+          "rank_biserial": -0.45454545454545453
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": -0.6235396599858127,
+          "p_value": 0.8485937118530273,
+          "rank_biserial": -0.18181818181818182
+        }
+      ],
+      "friedman_p_fdr_bh": 0.11680726389975997
+    },
+    {
+      "measure": "Wrist PPG heart rate",
+      "feature": "wppg_hr_mean_bpm_mean",
+      "n_subjects": 22,
+      "mean_0back": 76.37722782614455,
+      "mean_2back": 79.29892971132526,
+      "mean_3back": 79.55443224507252,
+      "friedman_chi2": 15.363636363636374,
+      "friedman_p": 0.00046113570755252703,
+      "kendall_w": 0.3491735537190085,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": 1.3973678333814483,
+          "p_value": 0.00012063980102539062,
+          "rank_biserial": 0.7272727272727273
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": 2.9425645351925382,
+          "p_value": 0.00017690658569335938,
+          "rank_biserial": 0.6363636363636364
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 0.07615134991930006,
+          "p_value": 0.6327285766601562,
+          "rank_biserial": 0.0
+        }
+      ],
+      "friedman_p_fdr_bh": 0.001998254732727617
+    },
+    {
+      "measure": "Wrist PPG SDNN",
+      "feature": "wppg_hrv_sd_ms_mean",
+      "n_subjects": 22,
+      "mean_0back": 105.26611430149282,
+      "mean_2back": 108.50721848062157,
+      "mean_3back": 116.1936388387489,
+      "friedman_chi2": 6.909090909090935,
+      "friedman_p": 0.03160166548535254,
+      "kendall_w": 0.15702479338843034,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": -0.4687322825305955,
+          "p_value": 0.9492697715759277,
+          "rank_biserial": 0.0
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": 7.037247107561569,
+          "p_value": 0.09173250198364258,
+          "rank_biserial": 0.36363636363636365
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 7.508663249831436,
+          "p_value": 0.027535438537597656,
+          "rank_biserial": 0.5454545454545454
+        }
+      ],
+      "friedman_p_fdr_bh": 0.0410821651309583
+    },
+    {
+      "measure": "Wrist PPG RMSSD",
+      "feature": "wppg_hrv_rmssd_ms_mean",
+      "n_subjects": 22,
+      "mean_0back": 153.73249539230483,
+      "mean_2back": 162.0887684039587,
+      "mean_3back": 178.3524102493745,
+      "friedman_chi2": 6.909090909090935,
+      "friedman_p": 0.03160166548535254,
+      "kendall_w": 0.15702479338843034,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": 4.101733428138957,
+          "p_value": 0.5235109329223633,
+          "rank_biserial": 0.0
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": 17.59718169413489,
+          "p_value": 0.050072669982910156,
+          "rank_biserial": 0.36363636363636365
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 10.58450452997039,
+          "p_value": 0.032894134521484375,
+          "rank_biserial": 0.5454545454545454
+        }
+      ],
+      "friedman_p_fdr_bh": 0.0410821651309583
+    },
+    {
+      "measure": "GSR tonic level",
+      "feature": "gsr_tonic_mean_mean",
+      "n_subjects": 22,
+      "mean_0back": 2.443335601221071,
+      "mean_2back": 2.7650037896109985,
+      "mean_3back": 2.994097495407763,
+      "friedman_chi2": 23.54545454545456,
+      "friedman_p": 7.71204417391303e-06,
+      "kendall_w": 0.5351239669421491,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": 0.16642474278031288,
+          "p_value": 0.0010914802551269531,
+          "rank_biserial": 0.6363636363636364
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": 0.3224254888137162,
+          "p_value": 0.000255584716796875,
+          "rank_biserial": 0.7272727272727273
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 0.16034600536136046,
+          "p_value": 0.00014638900756835938,
+          "rank_biserial": 0.8181818181818182
+        }
+      ],
+      "friedman_p_fdr_bh": 5.0128287130434695e-05
+    },
+    {
+      "measure": "GSR phasic variability",
+      "feature": "gsr_phasic_sd_mean",
+      "n_subjects": 22,
+      "mean_0back": 0.04440439526220621,
+      "mean_2back": 0.04810587936518813,
+      "mean_3back": 0.05662093867005182,
+      "friedman_chi2": 11.727272727272748,
+      "friedman_p": 0.0028408943522022206,
+      "kendall_w": 0.26652892561983516,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": 0.0019542599810587263,
+          "p_value": 0.3880448341369629,
+          "rank_biserial": 0.2727272727272727
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": 0.007045193024792873,
+          "p_value": 0.06341934204101562,
+          "rank_biserial": 0.45454545454545453
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": 0.004363184679598451,
+          "p_value": 0.0019183158874511719,
+          "rank_biserial": 0.7272727272727273
+        }
+      ],
+      "friedman_p_fdr_bh": 0.006155271096438144
+    },
+    {
+      "measure": "GSR SCR rate",
+      "feature": "gsr_scr_rate_min_mean",
+      "n_subjects": 22,
+      "mean_0back": 15.872727272727273,
+      "mean_2back": 14.468181818181817,
+      "mean_3back": 12.631818181818181,
+      "friedman_chi2": 1.3103448275862226,
+      "friedman_p": 0.5193525113308937,
+      "kendall_w": 0.02978056426332324,
+      "pairwise": [
+        {
+          "contrast": "0-back vs 2-back",
+          "median_difference": 0.20000000000000018,
+          "p_value": 0.8736042976379395,
+          "rank_biserial": 0.18181818181818182
+        },
+        {
+          "contrast": "0-back vs 3-back",
+          "median_difference": -1.2499999999999996,
+          "p_value": 0.07919195970684487,
+          "rank_biserial": -0.14285714285714285
+        },
+        {
+          "contrast": "2-back vs 3-back",
+          "median_difference": -0.9500000000000006,
+          "p_value": 0.10450617683615991,
+          "rank_biserial": -0.18181818181818182
+        }
+      ],
+      "friedman_p_fdr_bh": 0.5193525113308937
+    }
+  ],
+  "ibi_sensor_agreement": [
+    {
+      "comparison": "ECG vs fingertip PPG",
+      "n_trials": 132,
+      "pearson_r": 0.9988106560785025,
+      "spearman_r": 0.9995617078783007,
+      "mean_bias_ms": -1.0163004934222963,
+      "loa_lower_ms": -13.124901007372408,
+      "loa_upper_ms": 11.092300020527816,
+      "mae_ms": 1.4424822913900668,
+      "rmse_ms": 6.237760258039171
+    },
+    {
+      "comparison": "ECG vs wrist PPG",
+      "n_trials": 132,
+      "pearson_r": 0.9931834028951287,
+      "spearman_r": 0.9955283768059983,
+      "mean_bias_ms": 3.8831053022554554,
+      "loa_lower_ms": -23.387786029961344,
+      "loa_upper_ms": 31.153996634472254,
+      "mae_ms": 5.102028832505567,
+      "rmse_ms": 14.394565287890504
+    },
+    {
+      "comparison": "Fingertip vs wrist PPG",
+      "n_trials": 132,
+      "pearson_r": 0.9924716907267834,
+      "spearman_r": 0.9953927149588057,
+      "mean_bias_ms": 4.899405795677752,
+      "loa_lower_ms": -24.00855682797518,
+      "loa_upper_ms": 33.807368419330686,
+      "mae_ms": 5.776189153518321,
+      "rmse_ms": 15.48831963706899
+    }
+  ],
+  "signal_quality": {
+    "ecg": {
+      "mean_coverage_pct": 100.0,
+      "min_coverage_pct": 100.0,
+      "median_samples": 76800,
+      "sampling_rate_hz": 256
+    },
+    "fppg": {
+      "mean_coverage_pct": 100.0,
+      "min_coverage_pct": 100.0,
+      "median_samples": 76800,
+      "sampling_rate_hz": 256
+    },
+    "wppg": {
+      "mean_coverage_pct": 100.0,
+      "min_coverage_pct": 100.0,
+      "median_samples": 30000,
+      "sampling_rate_hz": 100
+    },
+    "gsr": {
+      "mean_coverage_pct": 100.0,
+      "min_coverage_pct": 100.0,
+      "median_samples": 76800,
+      "sampling_rate_hz": 256
+    }
+  },
+  "limitations": [
+    "The N-back condition is an experimental task-demand proxy, not a direct measurement of a person\u2019s internal mental state.",
+    "NASA-TLX and PSQI are reference/context variables and are not model predictors.",
+    "The 22-participant MAUS cohort is small and uses one acquisition protocol.",
+    "Subject-independent results require external validation on an independent cohort and hardware.",
+    "The application is a research demonstration, not a medical device or clinical diagnostic system."
+  ]
+}

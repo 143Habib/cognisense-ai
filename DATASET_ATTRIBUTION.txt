@@ -1,0 +1,10 @@
+MAUS DATASET ATTRIBUTION
+
+MAUS: A Dataset for Mental Workload Assessment on N-back Task Using Wearable Sensor.
+IEEE DataPort DOI: 10.21227/q4td-yd35
+
+This repository contains derived feature tables, evaluation outputs, and research summaries generated from MAUS. It does not redistribute the original MAUS.zip archive or the curated raw-recording subset.
+
+To enable raw ECG, fingertip PPG, wrist PPG, and GSR/EDA waveform inspection, obtain the original dataset through its official IEEE DataPort record and follow the dataset-specific access and reuse terms. Place an authorized local copy at data/MAUS.zip. Do not commit or redistribute the dataset archives unless the provider's terms explicitly permit it.
+
+Please cite the original MAUS dataset and observe its access and reuse terms in any poster, report, demonstration, or publication.

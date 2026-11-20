@@ -1,0 +1,36 @@
+COGNISENSE AI — RUN ME FIRST
+============================
+
+WHAT THIS IS
+------------
+A local research-software prototype for exploring MAUS wearable physiology and saved model evidence for Low vs Elevated N-back task-demand conditions.
+
+WINDOWS QUICK START
+-------------------
+1. Extract the project ZIP. Do not run the app from inside the ZIP preview.
+2. Install Python 3.11 (recommended) or 3.12 from https://www.python.org/downloads/ and enable “Add Python to PATH”.
+3. Double-click run_cognisense.bat.
+4. The first run creates a local .venv and installs the required packages. Internet is needed for this initial setup.
+5. Open http://127.0.0.1:8501 if the browser does not open automatically.
+6. Keep the terminal window open. Press CTRL+C there to stop the server.
+
+WHAT WORKS WITHOUT THE FULL RAW ARCHIVE
+---------------------------------------
+Overview, Cohort Map, Model Evidence, and Research use saved feature tables and evaluation results included in the repository.
+
+RAW SIGNAL STUDIO
+-----------------
+To inspect raw ECG, fingertip PPG, wrist PPG, and GSR/EDA waveforms, obtain the full MAUS archive under its original access terms and place it at data/MAUS.zip. The full archive is intentionally not committed to this repository.
+
+SCIENTIFIC NOTES
+----------------
+- This build uses recorded MAUS data; it does not connect to live wearable sensors.
+- 0-back is treated as Low and 2-back + 3-back as Elevated task demand for the binary comparison.
+- NASA-TLX and PSQI are context/reference variables, not predictive inputs.
+- The model score is not a calibrated clinical probability or a direct measurement of internal mental workload.
+- This is a research prototype, not a medical device.
+
+DATA SOURCE
+-----------
+MAUS: A Dataset for Mental Workload Assessment on N-back Task Using Wearable Sensor. IEEE DataPort DOI: 10.21227/q4td-yd35.
+See DATASET_ATTRIBUTION.txt and the README for dataset access and reuse notes.

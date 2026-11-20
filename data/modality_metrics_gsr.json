@@ -1,0 +1,30 @@
+{
+  "modality": "gsr",
+  "label": "GSR / EDA",
+  "n_features": 18,
+  "binary": {
+    "accuracy": 0.6212121212121212,
+    "balanced_accuracy": 0.5681818181818182,
+    "macro_f1": 0.5688528873791482,
+    "macro_precision": 0.5698412698412698,
+    "macro_recall": 0.5681818181818182,
+    "confusion_matrix": [
+      [
+        18,
+        26
+      ],
+      [
+        24,
+        64
+      ]
+    ],
+    "class_names": [
+      "Low",
+      "Elevated"
+    ],
+    "roc_auc": 0.6614152892561984,
+    "n_samples": 132,
+    "n_subjects": 22,
+    "n_features_input": 18
+  }
+}

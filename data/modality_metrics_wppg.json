@@ -1,0 +1,30 @@
+{
+  "modality": "wppg",
+  "label": "Wrist PPG",
+  "n_features": 22,
+  "binary": {
+    "accuracy": 0.553030303030303,
+    "balanced_accuracy": 0.48863636363636365,
+    "macro_f1": 0.4881367071968452,
+    "macro_precision": 0.4882069150361833,
+    "macro_recall": 0.48863636363636365,
+    "confusion_matrix": [
+      [
+        13,
+        31
+      ],
+      [
+        28,
+        60
+      ]
+    ],
+    "class_names": [
+      "Low",
+      "Elevated"
+    ],
+    "roc_auc": 0.5490702479338843,
+    "n_samples": 132,
+    "n_subjects": 22,
+    "n_features_input": 22
+  }
+}

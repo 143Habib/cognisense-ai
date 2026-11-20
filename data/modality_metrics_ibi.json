@@ -1,0 +1,30 @@
+{
+  "modality": "ibi",
+  "label": "IBI / HRV",
+  "n_features": 18,
+  "binary": {
+    "accuracy": 0.553030303030303,
+    "balanced_accuracy": 0.49431818181818177,
+    "macro_f1": 0.49425287356321834,
+    "macro_precision": 0.49425137183172196,
+    "macro_recall": 0.49431818181818177,
+    "confusion_matrix": [
+      [
+        14,
+        30
+      ],
+      [
+        29,
+        59
+      ]
+    ],
+    "class_names": [
+      "Low",
+      "Elevated"
+    ],
+    "roc_auc": 0.5734762396694215,
+    "n_samples": 132,
+    "n_subjects": 22,
+    "n_features_input": 18
+  }
+}

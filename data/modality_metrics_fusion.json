@@ -1,0 +1,30 @@
+{
+  "modality": "fusion",
+  "label": "All-sensor fusion",
+  "n_features": 100,
+  "binary": {
+    "accuracy": 0.6742424242424242,
+    "balanced_accuracy": 0.6022727272727273,
+    "macro_f1": 0.6058059587471352,
+    "macro_precision": 0.6212121212121212,
+    "macro_recall": 0.6022727272727273,
+    "confusion_matrix": [
+      [
+        17,
+        27
+      ],
+      [
+        16,
+        72
+      ]
+    ],
+    "class_names": [
+      "Low",
+      "Elevated"
+    ],
+    "roc_auc": 0.5983987603305785,
+    "n_samples": 132,
+    "n_subjects": 22,
+    "n_features_input": 100
+  }
+}

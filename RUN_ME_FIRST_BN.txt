@@ -1,0 +1,40 @@
+COGNISENSE AI — চালানোর সহজ নিয়ম (Windows)
+===========================================
+
+১) ZIP extract করো
+------------------
+- Project ZIP-এর ওপর Right-click → Extract All দাও। ZIP-এর ভেতর থেকে সরাসরি run করবে না।
+
+২) Python install করো
+---------------------
+- Python 3.11 (recommended) অথবা 3.12 install করো: https://www.python.org/downloads/
+- Install করার সময় “Add Python to PATH” tick দেবে।
+
+৩) Software চালু করো
+--------------------
+- Project folder-এর run_cognisense.bat double-click করো।
+- প্রথমবার .venv তৈরি হবে এবং requirements.txt-এর package install হবে। প্রথমবার internet লাগবে।
+- Browser না খুললে http://127.0.0.1:8501 address দাও।
+- Software চালু থাকা অবস্থায় terminal window বন্ধ করবে না। বন্ধ করতে CTRL+C চাপবে।
+
+৪) Website-এর অংশগুলো
+---------------------
+- Overview: dataset ও sensor summary এবং NASA-TLX context।
+- Signal Studio: raw waveform দেখতে full MAUS archive data/MAUS.zip-এ রাখতে হবে।
+- Cohort Map: 3D PCA visualization এবং participant/trial view।
+- Model Evidence: modality ও all-sensor fusion-এর validation metric।
+- Research: dataset, processing, evaluation এবং limitation।
+
+৫) Dataset সম্পর্কে
+-------------------
+- Repository-তে saved research evidence ও একটি curated PPG subset আছে।
+- Full MAUS.zip repository-তে রাখা হয়নি; dataset-এর original access/reuse terms মেনে IEEE DataPort DOI 10.21227/q4td-yd35 থেকে authorized access নিয়ে data/MAUS.zip হিসেবে রাখতে হবে।
+- Full archive ছাড়া Overview, Cohort Map, Model Evidence ও Research চলবে; raw Signal Studio waveform দেখা যাবে না।
+
+গুরুত্বপূর্ণ
+-----------
+- এটি recorded-data research prototype; live wearable sensor connect করে না।
+- 0-back = Low এবং 2-/3-back = Elevated task-demand group।
+- NASA-TLX ও PSQI model predictor নয়; এগুলো context/reference variable।
+- Model score clinical probability নয় এবং মানুষের internal mental state সরাসরি মাপে না।
+- এটি medical device নয়।
