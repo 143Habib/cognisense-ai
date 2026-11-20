@@ -1,0 +1,24 @@
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local secrets and machine-specific files
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+
+# Original full MAUS archive is not redistributed in this repository
+data/MAUS.zip
+data/maus_subset/
+
+# MAUS raw/curated recordings: obtain and use under the dataset provider terms
+data/maus_research_subset.zip
